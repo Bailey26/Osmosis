@@ -1,0 +1,57 @@
+CREATE TABLE Users (
+	uid int NOT NULL, /* list primary keys first */
+	firstName char(20), 
+	lastName char(20),
+	PRIMARY KEY (uid)
+);
+
+CREATE TABLE Videos (
+	vid int NOT NULL,
+	url text NOT NULL,
+	title text NOT NULL,
+	PRIMARY KEY (vid)
+);
+
+/* Relationships don't necesarily need a table */
+
+CREATE TABLE Users_Ratings (
+	uid int NOT NULL, 
+	vid int NOT NULL, 
+	star int, 
+	CHECK (
+		star = 1 or star = 2 or star = 3 or start = 4 or star = 5
+	)
+	PRIMARY KEY (uid, vid),
+	FOREIGN KEY (uid) REFERENCES Users(uid),
+	FOREIGN KEY (vid) REFERENCES Videos(vid)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE Users_Reviews (
+	uid int NOT NULL,
+	vid int NOT NULL, 
+	review char(140),
+	PRIMARY KEY (uid, vid),
+	FOREIGN KEY (uid) REFERENCES Users(uid),
+	FOREIGN KEY (vid) REFERENCES Videos(vid)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE Lists (
+	listId int NOT NULL, /* weak entities can have primary keys */
+	uid int NOT NULL,
+	name char(20) NOT NULL,
+	PRIMARY KEY (listId),
+	FOREIGN KEY (uid) REFERENCES Users(uid)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE Lists_Videos ( /* this is one record in the list */
+	listId int NOT NULL,
+	vid int NOT NULL,
+	PRIMARY KEY (listId, vid),
+	FOREIGN KEY (listId) REFERENCES Lists(listId)
+		ON DELETE CASCADE,
+	FOREIGN KEY (vid) REFERENCES Videos(vid)
+		ON DELETE CASCADE
+);

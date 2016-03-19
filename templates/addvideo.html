@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Add Video</title>
+	</head>
+	<style>	
+		body {
+			font-size: 12pt;
+			font-family: times;
+		}
+	</style>
+	
+	<body>
+		<form method="post">
+			User ID #:<br>
+			<input type="number" name="userid" min="0" max="64000000000000000"><br><br>
+			Video ID #:<br>
+			<input type="number" name="vid" min="0" max="64000000000000000"><br><br>
+			Video Title (Max 80 chars): <br>
+			<input type="" name="vidtitle" maxlength="80"><br><br>
+			Video URL (Max 80 chars): <br>
+			<input type="text" name="vidurl" maxlength="80"><br><br>
+			Space-Separated Tags (Max 140 chars): <br>
+			<input type="" name="tags" maxlength="140"><br><br>
+			List ID #:<br>
+			<input type="number" name="lid" min="0" max="64000000000000000"><br><br>
+			Name of List to Store Video (Max 80 chars): <br>
+			<input type="text" name="list" maxlength="80"><br><br>
+			<input type="submit" value="Add Video">
+		</form>
+	</body>
+</html>
